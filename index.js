@@ -5,6 +5,8 @@ var pavlok = require('pavlok-beta-api-login');
 var express = require('express');
 var open = require('open');
 
+console.log("process.env.CLIENT_ID: " + process.env.CLIENT_ID);
+
 console.log("Setting up remote...");
 
 var app = express();
