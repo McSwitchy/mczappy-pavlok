@@ -1,0 +1,32 @@
+{
+  "name": "mczappy-pavlok",
+  "version": "0.1.0",
+  "description": "pavlok patterns via node & now",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "PORT=3000 node index",
+    "now": "now --public --dotenv=.env -e NODE_ENV=\"production\" && now alias",
+    "build": "cp pavlok_token /tmp"
+  },
+  "now": {
+    "alias": "mczappy",
+    "public": true
+  },
+  "keywords": [
+    "remote",
+    "pavlok"
+  ],
+  "author": "35954404+McSwitchy@users.noreply.github.com",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "express": "^4.13.4",
+    "open": "0.0.5",
+    "pavlok-beta-api-login": "^2.0.0"
+  },
+  "devDependencies": {
+    "now": ">8.0.0"
+  }
+}
