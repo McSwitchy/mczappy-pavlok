@@ -47,9 +47,9 @@ if (process.env.NODE_ENV === 'development') {
       "message": "zappytime!",
       "app": app,
       "save": true,
-      "callbackUrl": "http://mczappy.now.sh/auth/pavlok/result",
+      "callbackUrl": "https://mczappy.now.sh/auth/pavlok/result",
       "callbackUrlPath": "/auth/pavlok/result",
-      "successUrl": "/", //Where to redirect when the token has been saved to session
+      "successUrl": "/main", //Where to redirect when the token has been saved to session
       "errorUrl": "/error" //Where to redirect when the token couldn't be gotten/saved
     }
   );
@@ -59,6 +59,10 @@ if (process.env.NODE_ENV === 'development') {
 // if (!tokenFile.token) {
 
 app.get("/", function(req, result){
+	result.redirect("main.html");
+});
+
+app.get("/main", function(req, result){
 	result.redirect("main.html");
 });
 
