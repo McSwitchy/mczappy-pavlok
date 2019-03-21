@@ -1,11 +1,14 @@
 // import secrets for pavlok API
 require('dotenv').config();
+const tokenFile = require('./pavlok_token.json');
 
 var pavlok = require('pavlok-beta-api-login');
 var express = require('express');
 var open = require('open');
 
 console.log("process.env.CLIENT_ID: " + process.env.CLIENT_ID);
+
+// console.log(process.env)
 
 console.log("Setting up remote...");
 
@@ -16,21 +19,39 @@ app.use(express.static(__dirname + '/public'));
 
 // Setup Pavlok component
 // example https://github.com/Behavioral-Technology-Group/Pavlok-Node-Samples/blob/master/Pavlok_RAM_Buzz/index.js#L33
-pavlok.init(
-  process.env.CLIENT_ID,
-	process.env.CLIENT_SECRET, {
-    "verbose": "true",
-    "message": "zappytime!",
-    "save": process.env.DEVELOPMENT === true,
-    // "tokenFile": process.env.NOW ? "/tmp/pavlok_token" : "pavlok_token",
-    "tokenFile": "pavlok_token",
-    "port": 3010
-  }
-);
+// if (process.env.NODE_ENV === 'development') {
+  pavlok.init(
+    process.env.CLIENT_ID,
+    process.env.CLIENT_SECRET, {
+      "verbose": "true",
+      "message": "zappytime!",
+      "save": true,
+      "tokenFile": "pavlok_token.json",
+      // "port": 3010
+    }
+  );
+// } else {
+//   pavlok.init(
+//     process.env.CLIENT_ID,
+//     process.env.CLIENT_SECRET, {
+//       "verbose": "true",
+//       "message": "zappytime!",
+//       "app": app,
+//       "save": true,
+//       "callbackUrl": "http://www.myserver.com/pavlok/result",
+//       "successUrl": "/success", //Where to redirect when the token has been saved to session
+//       "errorUrl": "/error" //Where to redirect when the token couldn't be gotten/saved
+//     }
+//   );
+// }
+
+
+// if (!tokenFile.token) {
+
 pavlok.login(function(result, code){
 	if(result){
 		console.log("pavlok-node login function worked; response auth token saved to ./pavlok_token");
-    // console.dir(code);
+    console.dir(code);
 	} else {
 		console.log("Unable to sign-in to Pavlok!");
 	}
@@ -287,6 +308,7 @@ app.get("/vibe20-rando", function(req, result){
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-app.listen(process.env.PORT, function(){
-	console.log("Visit " + process.env.NOW_URL + process.env.PORT ? `:${process.env.PORT}` : '');
+app.listen(process.env.PORT, function () {
+  let baseUrl = process.env.NOW_URL ? process.env.NOW_URL : 'localhost'
+	console.log(`Visit http://${baseUrl}:${process.env.PORT}`);
 });
