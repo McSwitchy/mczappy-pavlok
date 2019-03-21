@@ -48,11 +48,11 @@ if (process.env.NODE_ENV === 'development') {
       "message": "zappytime!",
       "apiUrl": process.env.API_URL,
       "app": app,
-      "save": true,
       "callbackUrl": "https://mczappy.now.sh/auth/pavlok/result",
       "callbackUrlPath": "/auth/pavlok/result",
-      "successUrl": "/main", //Where to redirect when the token has been saved to session
-      "errorUrl": "/error" //Where to redirect when the token couldn't be gotten/saved
+      "successUrl": "/main.html", //Where to redirect when the token has been saved to session
+      "errorUrl": "/error", //Where to redirect when the token couldn't be gotten/saved
+      "successWithCode": true
     }
   );
 }
@@ -61,7 +61,8 @@ if (process.env.NODE_ENV === 'development') {
 // if (!tokenFile.token) {
 
 app.get("/", function(req, result){
-	result.redirect("login.html");
+  // result.redirect("login.html");
+  pavlok.auth(req, res);
 });
 
 app.get("/auth", function(req, res){
@@ -80,7 +81,8 @@ app.get("/auth2/pavlok", function(req, result){
 
 
 
-app.get("/main", function(req, result){
+app.get("/main", function (req, result) {
+  console.log("get /main: session: " + req.session)
 	result.redirect("main.html");
 });
 
@@ -88,7 +90,8 @@ app.get("/error", function(req, result){
 	result.redirect("error.html");
 });
 
-app.get("/zap", function(req, result){
+app.get("/zap", function (req, result) {
+  console.log("get /zap: session: " + req.session)
 	pavlok.zap({
 		"request": req
 	});
