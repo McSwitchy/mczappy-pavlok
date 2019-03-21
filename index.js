@@ -50,9 +50,9 @@ if (process.env.NODE_ENV === 'development') {
       "app": app,
       "callbackUrl": "https://mczappy.now.sh/auth/pavlok/result",
       "callbackUrlPath": "/auth/pavlok/result",
-      "successUrl": "/main.html", //Where to redirect when the token has been saved to session
+      "successUrl": "/main", //Where to redirect when the token has been saved to session
       "errorUrl": "/error", //Where to redirect when the token couldn't be gotten/saved
-      "successWithCode": true
+      // "successWithCode": true
     }
   );
 }
@@ -65,19 +65,20 @@ app.get("/", function(req, result){
   pavlok.auth(req, result);
 });
 
-app.get("/auth", function(req, result){
+app.get("/auth", function (req, result) {
+  console.log("get /auth: session: " + req.session)
 	pavlok.auth(req, result);
 });
 
-app.get("/auth2/pavlok", function(req, result){
-  result.redirect(
-    process.env.API_URL +
-    '/oauth/authorize' + 
-    '?client_id=' + process.env.CLIENT_ID +
-    '&redirect_uri=https://mczappy.now.sh/auth/pavlok/result' + 
-    '&response_type=code'
-  );
-});
+// app.get("/auth2/pavlok", function(req, result){
+//   result.redirect(
+//     process.env.API_URL +
+//     '/oauth/authorize' + 
+//     '?client_id=' + process.env.CLIENT_ID +
+//     '&redirect_uri=https://mczappy.now.sh/auth/pavlok/result' + 
+//     '&response_type=code'
+//   );
+// });
 
 
 
