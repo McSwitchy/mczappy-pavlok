@@ -6,10 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "dev": "NODE_ENV=development PORT=3000 node index",
+    "devOld": "NODE_ENV=development PORT=3000 node index",
+    "dev": "node -r dotenv/config index.js dotenv_config_path=./.env.development",
     "now": "now -e NODE_ENV=production",
     "oldnow": "now --public --dotenv=.env -e NODE_ENV=\"production\" && now alias",
-    "build": "cp pavlok_token.json /tmp"
+    "oldbuild": "cp pavlok_token.json /tmp"
   },
   "keywords": [
     "remote",

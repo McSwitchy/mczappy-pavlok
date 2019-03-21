@@ -19,7 +19,7 @@ app.use(express.static(__dirname + '/public'));
 
 // Setup Pavlok component
 // example https://github.com/Behavioral-Technology-Group/Pavlok-Node-Samples/blob/master/Pavlok_RAM_Buzz/index.js#L33
-// if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development') {
   pavlok.init(
     process.env.CLIENT_ID,
     process.env.CLIENT_SECRET, {
@@ -27,38 +27,42 @@ app.use(express.static(__dirname + '/public'));
       "message": "zappytime!",
       "save": true,
       "tokenFile": "pavlok_token.json",
+      //  "tokenFile": process.env.NOW ? "/tmp/pavlok_token.json" : "pavlok_token.json",
       // "port": 3010
     }
   );
-// } else {
-//   pavlok.init(
-//     process.env.CLIENT_ID,
-//     process.env.CLIENT_SECRET, {
-//       "verbose": "true",
-//       "message": "zappytime!",
-//       "app": app,
-//       "save": true,
-//       "callbackUrl": "http://www.myserver.com/pavlok/result",
-//       "successUrl": "/success", //Where to redirect when the token has been saved to session
-//       "errorUrl": "/error" //Where to redirect when the token couldn't be gotten/saved
-//     }
-//   );
-// }
+  pavlok.login(function(result, code){
+    if(result){
+      console.log("pavlok-node login function worked; response auth token saved to ./pavlok_token");
+      console.dir(code);
+    } else {
+      console.log("Unable to sign-in to Pavlok!");
+    }
+  });
+} else {
+  pavlok.init(
+    process.env.CLIENT_ID,
+    process.env.CLIENT_SECRET, {
+      "verbose": "true",
+      "message": "zappytime!",
+      "app": app,
+      "save": true,
+      "callbackUrl": "http://mczappy.now.sh/auth/pavlok/result",
+      "successUrl": "/", //Where to redirect when the token has been saved to session
+      "errorUrl": "/error" //Where to redirect when the token couldn't be gotten/saved
+    }
+  );
+}
 
 
 // if (!tokenFile.token) {
 
-pavlok.login(function(result, code){
-	if(result){
-		console.log("pavlok-node login function worked; response auth token saved to ./pavlok_token");
-    console.dir(code);
-	} else {
-		console.log("Unable to sign-in to Pavlok!");
-	}
-});
-
 app.get("/", function(req, result){
 	result.redirect("main.html");
+});
+
+app.get("/error", function(req, result){
+	result.redirect("error.html");
 });
 
 app.get("/zap", function(req, result){
