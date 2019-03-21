@@ -1,6 +1,5 @@
 // import secrets for pavlok API
 require('dotenv').config();
-const tokenFile = require('./pavlok_token.json');
 
 var pavlok = require('pavlok-beta-api-login');
 var express = require('express');
@@ -20,6 +19,8 @@ app.use(express.static(__dirname + '/public'));
 // Setup Pavlok component
 // example https://github.com/Behavioral-Technology-Group/Pavlok-Node-Samples/blob/master/Pavlok_RAM_Buzz/index.js#L33
 if (process.env.NODE_ENV === 'development') {
+  const tokenFile = require('./pavlok_token.json');
+  
   pavlok.init(
     process.env.CLIENT_ID,
     process.env.CLIENT_SECRET, {
