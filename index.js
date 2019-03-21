@@ -62,11 +62,11 @@ if (process.env.NODE_ENV === 'development') {
 
 app.get("/", function(req, result){
   // result.redirect("login.html");
-  pavlok.auth(req, res);
+  pavlok.auth(req, result);
 });
 
-app.get("/auth", function(req, res){
-	pavlok.auth(req, res);
+app.get("/auth", function(req, result){
+	pavlok.auth(req, result);
 });
 
 app.get("/auth2/pavlok", function(req, result){
