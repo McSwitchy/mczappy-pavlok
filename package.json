@@ -27,6 +27,6 @@
     "pavlok-beta-api-login": "^2.0.0"
   },
   "devDependencies": {
-    "now": ">8.0.0"
+    "now": "^14.2.2"
   }
 }
