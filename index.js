@@ -46,7 +46,7 @@ if (process.env.NODE_ENV === 'development') {
     process.env.CLIENT_SECRET, {
       "verbose": "true",
       "message": "zappytime!",
-      "apiUrl": process.env.API_URL
+      "apiUrl": process.env.API_URL,
       "app": app,
       "save": true,
       "callbackUrl": "https://mczappy.now.sh/auth/pavlok/result",
