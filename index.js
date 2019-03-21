@@ -50,8 +50,9 @@ if (process.env.NODE_ENV === 'development') {
       "app": app,
       "callbackUrl": "https://mczappy.now.sh/auth/pavlok/result",
       "callbackUrlPath": "/auth/pavlok/result",
-      "successUrl": "/main", //Where to redirect when the token has been saved to session
+      "successUrl": "/main.html", //Where to redirect when the token has been saved to session
       "errorUrl": "/error", //Where to redirect when the token couldn't be gotten/saved
+      "handleSessions": true
       // "successWithCode": true
     }
   );
