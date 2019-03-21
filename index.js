@@ -61,11 +61,11 @@ if (process.env.NODE_ENV === 'development') {
 // if (!tokenFile.token) {
 
 app.get("/", function(req, result){
-  // result.redirect("login.html");
-  pavlok.auth(req, result);
+  result.redirect("login.html");
+  // pavlok.auth(req, result);
 });
 
-app.get("/auth", function (req, result) {
+app.get("/authorize", function (req, result) {
   console.log("get /auth: session: " + req.session)
 	pavlok.auth(req, result);
 });
