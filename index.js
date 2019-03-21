@@ -46,12 +46,13 @@ if (process.env.NODE_ENV === 'development') {
     process.env.CLIENT_SECRET, {
       "verbose": "true",
       "message": "zappytime!",
+      "apiUrl": process.env.API_URL
       "app": app,
       "save": true,
       "callbackUrl": "https://mczappy.now.sh/auth/pavlok/result",
       "callbackUrlPath": "/auth/pavlok/result",
       "successUrl": "/main", //Where to redirect when the token has been saved to session
-      "errorUrl": "/error" //Where to redirect when the token couldn't be gotten/saved
+      // "errorUrl": "/error" //Where to redirect when the token couldn't be gotten/saved
     }
   );
 }
@@ -62,6 +63,18 @@ if (process.env.NODE_ENV === 'development') {
 app.get("/", function(req, result){
 	result.redirect("login.html");
 });
+
+app.get("/auth/pavlok", function(req, result){
+  result.redirect(
+    process.env.API_URL +
+    '/oauth/authorize' + 
+    '?client_id=' + process.env.CLIENT_ID +
+    '&redirect_uri=https://mczappy.now.sh/auth/pavlok/result' + 
+    '&response_type=code'
+  );
+});
+
+
 
 app.get("/main", function(req, result){
 	result.redirect("main.html");

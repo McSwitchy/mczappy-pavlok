@@ -8,7 +8,7 @@
     "start": "node index.js",
     "devOld": "NODE_ENV=development PORT=3000 node index",
     "dev": "node -r dotenv/config index.js dotenv_config_path=./.env.development",
-    "now": "now -e NODE_ENV=production",
+    "now": "now && now alias",
     "oldnow": "now --public --dotenv=.env -e NODE_ENV=\"production\" && now alias",
     "oldbuild": "cp pavlok_token.json /tmp"
   },
