@@ -59,7 +59,7 @@ if (process.env.NODE_ENV === 'development') {
 // if (!tokenFile.token) {
 
 app.get("/", function(req, result){
-	result.redirect("main.html");
+	result.redirect("login.html");
 });
 
 app.get("/main", function(req, result){

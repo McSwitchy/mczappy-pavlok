@@ -1,13 +1,12 @@
 {
   "version": 1,
   "name": "mczappy-pavlok",
-  "alias": "mczappy",
+  "alias": "mczappy.now.sh",
   "dotenv": true,
   "public": true,
   "type": "npm",
   "files": [
     "public",
-    "pavlok_token.json",
     "index.js"
   ]
 }
