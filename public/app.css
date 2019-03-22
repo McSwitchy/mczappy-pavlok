@@ -1,0 +1,12 @@
+#bg-upper-right-image {
+  position: absolute;
+  top: 20px;
+  right: 0px;
+  width: 50%;
+  height: 50%;
+  background-image: url("/pavlok-wrist.png");
+  background-origin: border-box;
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
