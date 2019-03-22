@@ -43,7 +43,7 @@ if (process.env.NODE_ENV === 'development') {
       "message": "zappytime!",
       "apiUrl": process.env.API_URL,
       "app": app,
-      "callbackUrl": "https://mczappy.now.sh/auth/pavlok/result",
+      "callbackUrl": process.env.SERVER_URL + "auth/pavlok/result",
       "callbackUrlPath": "/auth/pavlok/result",
       "successPath": "/main", //Where to redirect when the token has been saved to session
       "failurePath": "/error", //Where to redirect when the token couldn't be gotten/saved
