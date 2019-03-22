@@ -50,8 +50,8 @@ if (process.env.NODE_ENV === 'development') {
       "app": app,
       "callbackUrl": "https://mczappy.now.sh/auth/pavlok/result",
       "callbackUrlPath": "/auth/pavlok/result",
-      "successUrl": "/main.html", //Where to redirect when the token has been saved to session
-      "errorUrl": "/error", //Where to redirect when the token couldn't be gotten/saved
+      "successPath": "/main", //Where to redirect when the token has been saved to session
+      "failurePath": "/error", //Where to redirect when the token couldn't be gotten/saved
       "handleSessions": true
       // "successWithCode": true
     }
@@ -62,8 +62,9 @@ if (process.env.NODE_ENV === 'development') {
 // if (!tokenFile.token) {
 
 app.get("/", function(req, result){
-  result.redirect("login.html");
+  // result.redirect("login.html");
   // pavlok.auth(req, result);
+  result.sendFile('/public/login.html')
 });
 
 app.get("/authorize", function (req, result) {
@@ -85,7 +86,8 @@ app.get("/authorize", function (req, result) {
 
 app.get("/main", function (req, result) {
   console.log("get /main: session: " + req.session)
-	result.redirect("main.html");
+  // result.redirect("main.html");
+  result.sendFile('/public/main.html')
 });
 
 app.get("/error", function(req, result){
