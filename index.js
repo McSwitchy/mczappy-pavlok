@@ -87,7 +87,7 @@ app.get("/authorize", function (req, result) {
 app.get("/main", function (req, result) {
   console.log("get /main: session: " + req.session)
   // result.redirect("main.html");
-  result.sendFile(__dirname + '/public/login.html')
+  result.sendFile(__dirname + '/public/main.html')
 });
 
 app.get("/error", function(req, result){
