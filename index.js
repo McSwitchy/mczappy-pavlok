@@ -6,9 +6,6 @@ var express = require('express');
 var open = require('open');
 
 console.log("process.env.CLIENT_ID: " + process.env.CLIENT_ID);
-
-// console.log(process.env)
-
 console.log("Setting up remote...");
 
 var app = express();
@@ -28,8 +25,6 @@ if (process.env.NODE_ENV === 'development') {
       "message": "zappytime!",
       "save": true,
       "tokenFile": "pavlok_token.json",
-      //  "tokenFile": process.env.NOW ? "/tmp/pavlok_token.json" : "pavlok_token.json",
-      // "port": 3010
     }
   );
   pavlok.login(function(result, code){
@@ -58,35 +53,17 @@ if (process.env.NODE_ENV === 'development') {
   );
 }
 
-
-// if (!tokenFile.token) {
-
 app.get("/", function(req, result){
   // result.redirect("login.html");
-  // pavlok.auth(req, result);
   result.sendFile(__dirname + '/public/login.html')
 });
 
 app.get("/authorize", function (req, result) {
-  console.log("get /auth: session: " + req.session)
 	pavlok.auth(req, result);
 });
 
-// app.get("/auth2/pavlok", function(req, result){
-//   result.redirect(
-//     process.env.API_URL +
-//     '/oauth/authorize' + 
-//     '?client_id=' + process.env.CLIENT_ID +
-//     '&redirect_uri=https://mczappy.now.sh/auth/pavlok/result' + 
-//     '&response_type=code'
-//   );
-// });
-
-
 
 app.get("/main", function (req, result) {
-  console.log("get /main: session: " + req.session)
-  // result.redirect("main.html");
   result.sendFile(__dirname + '/public/main.html')
 });
 
@@ -95,7 +72,6 @@ app.get("/error", function(req, result){
 });
 
 app.get("/zap", function (req, result) {
-  console.log("get /zap: session: " + req.session)
 	pavlok.zap({
 		"request": req
 	});

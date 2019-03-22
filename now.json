@@ -3,7 +3,7 @@
   "name": "mczappy-pavlok",
   "alias": "mczappy.now.sh",
   "dotenv": true,
-  "public": true,
+  "public": false,
   "type": "npm",
   "files": [
     "public",

@@ -17,12 +17,24 @@
       urn:ietf:wg:oauth:2.0:oob
       http://localhost:3010/auth/pavlok/result
     ```
-  - paste `Client ID` & `Secret` from the `pavlok-mvp` into the `.env` file.
+  - `cp .env.example .env.development`
+  - paste `Client ID` & `Secret` from the `pavlok-mvp` into the `.env.development` file.
   - the process will complete in your browser when the local server is started
 - references:
   - https://buy.pavlok.com/blogs/news/115896643-pavlok-developer-api
   - https://github.com/Behavioral-Technology-Group/Pavlok-Node-Samples/tree/master/Pavlok_Node_Remote
 
+## server mode
+- to run the app on a remote server, another oauth key needs to be provisioned.
+  - click "[register your application](http://pavlok-mvp.herokuapp.com/oauth/applications)"
+  - click "New Application" button
+  - give it a name
+  - paste the following into the `Redirect URI` field & submit:
+    ```
+      http://<your-host-url.tld>/auth/pavlok/result
+    ```
+  - `cp .env.example .env`
+  - paste `Client ID` & `Secret` from the `pavlok-mvp` into the `.env` file.
 
 ## run
 - `yarn dev` to start dev mode (go to http://localhost:3000 after the server starts)
