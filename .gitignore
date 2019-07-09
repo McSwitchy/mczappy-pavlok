@@ -1,2 +1,4 @@
 .env
+.env.development
 node_modules/
+.git.bfg-report/
